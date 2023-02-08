@@ -1,11 +1,15 @@
 const sectionLivros = document.getElementById("livros")
+const valorTotalDeLivrosEmTela = document.getElementById('valor_total_livros_disponiveis');
 
 function exibirLivrosNaTela(listaDeLivros) {
+    valorTotalDeLivrosEmTela.innerHTML = "";
     sectionLivros.innerHTML = '';   
-    listaDeLivros.forEach(livro => {               
+    listaDeLivros.forEach(livro => {
+        //let disponibilidade = verificarDisponibilidadeDoLivro(livro);
+        let disponibilidade = livro.quantidade > 0 ? 'livro__imagens' : 'livro__imagens indisponivel';     
         sectionLivros.innerHTML += `
         <div class="livro">
-            <img class="livro__imagens" src="${livro.imagem}" alt="${livro.alt}" />
+            <img class="${disponibilidade}" src="${livro.imagem}" alt="${livro.alt}" />
             <h2 class="livro__titulo">
                 ${livro.titulo}
             </h2>
@@ -19,3 +23,12 @@ function exibirLivrosNaTela(listaDeLivros) {
         // toFixed(2) determina que apenas 2 casas apos a virgula serão exibidas
     });
 }
+
+// function verificarDisponibilidadeDoLivro (livro){
+//     if(livro.quantidade > 0){
+//         return 'livro__imagens'
+//     }else{
+//         return 'livro__imagens indisponivel'
+
+//     }
+// }
